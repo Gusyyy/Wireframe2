@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Educativa</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #1e1e1e;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor {
+            display: flex;
+            gap: 46px;
+            padding: 30px;
+        }
+
+        /* -------------------------
+           TELÉFONO
+        ------------------------- */
+
+        .telefono {
+            width: 174px;
+            height: 384px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contenido {
+            height: calc(100% - 25px);
+            padding: 16px 13px;
+            overflow: hidden;
+        }
+
+        /* -------------------------
+           BARRA INFERIOR
+        ------------------------- */
+
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 25px;
+            background: #d9d9d9;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .bottom-nav span {
+            font-size: 14px;
+            color: #111;
+        }
+
+        /* -------------------------
+           ICONOS
+        ------------------------- */
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .menu {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .campana {
+            font-size: 12px;
+        }
+
+        .cerrar {
+            font-size: 27px;
+            font-weight: 200;
+        }
+
+        /* -------------------------
+           PERFIL
+        ------------------------- */
+
+        .perfil {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border: 5px solid #b65b5b;
+            border-radius: 50%;
+            margin: 5px auto 10px;
+            position: relative;
+        }
+
+        .avatar::before {
+            content: "";
+            width: 22px;
+            height: 22px;
+            background: #b65b5b;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            left: 14px;
+        }
+
+        .avatar::after {
+            content: "";
+            width: 38px;
+            height: 20px;
+            background: #b65b5b;
+            border-radius: 25px 25px 0 0;
+            position: absolute;
+            bottom: 0;
+            left: 6px;
+        }
+
+        .perfil h4 {
+            font-size: 10px;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .linea {
+            height: 3px;
+            background: #111;
+            width: 60px;
+            margin: 0 auto 7px;
+        }
+
+        .linea-corta {
+            height: 2px;
+            background: #111;
+            width: 42px;
+            margin: auto;
+        }
+
+        .opciones {
+            margin-top: 40px;
+        }
+
+        .opcion {
+            border-bottom: 1px solid #999;
+            padding: 9px 0;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .logout {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            align-items: center;
+        }
+
+        /* -------------------------
+           BUSCADOR
+        ------------------------- */
+
+        .search {
+            height: 19px;
+            border: 1px solid #111;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            padding: 0 8px;
+            font-size: 7px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* -------------------------
+           PLACEHOLDER IMAGEN
+        ------------------------- */
+
+        .imagen {
+            background:
+                linear-gradient(
+                    to bottom right,
+                    transparent 49.5%,
+                    #777 50%,
+                    transparent 50.5%
+                ),
+                linear-gradient(
+                    to top right,
+                    transparent 49.5%,
+                    #777 50%,
+                    transparent 50.5%
+                ),
+                #ddd;
+        }
+
+        .banner {
+            width: 100%;
+            height: 74px;
+        }
+
+        .puntos {
+            text-align: center;
+            font-size: 6px;
+            margin-top: -9px;
+            position: relative;
+        }
+
+        /* -------------------------
+           QUICK LINKS
+        ------------------------- */
+
+        h3 {
+            font-size: 10px;
+            margin: 13px 0 8px;
+        }
+
+        .quick-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quick {
+            width: 27px;
+            height: 28px;
+        }
+
+        .quick-line {
+            width: 27px;
+            height: 2px;
+            background: #111;
+            margin-top: 4px;
+        }
+
+        /* -------------------------
+           CURSOS
+        ------------------------- */
+
+        .curso {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .mini-img {
+            width: 28px;
+            height: 35px;
+            flex-shrink: 0;
+        }
+
+        .curso-info {
+            flex: 1;
+        }
+
+        .curso-line {
+            height: 3px;
+            background: #111;
+            width: 100%;
+            margin-bottom: 7px;
+        }
+
+        .texto-line {
+            height: 2px;
+            background: #777;
+            width: 75%;
+            margin-bottom: 4px;
+        }
+
+        /* -------------------------
+           PERFIL CURSOS
+        ------------------------- */
+
+        .perfil-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .perfil-info {
+            width: 80px;
+        }
+
+        .perfil-info h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .perfil-info .black {
+            height: 5px;
+            background: #111;
+            margin-bottom: 5px;
+            width: 68px;
+        }
+
+        .perfil-info .gray {
+            height: 2px;
+            background: #999;
+            margin-bottom: 4px;
+            width: 52px;
+        }
+
+        .perfil-header .avatar {
+            margin: 0;
+            width: 48px;
+            height: 48px;
+        }
+
+        .perfil-header .avatar::before {
+            width: 18px;
+            height: 18px;
+            left: 10px;
+            top: 5px;
+        }
+
+        .perfil-header .avatar::after {
+            width: 30px;
+            height: 16px;
+            left: 4px;
+        }
+
+        .seccion {
+            font-size: 10px;
+            font-weight: bold;
+            margin: 13px 0;
+        }
+
+        .curso-completado {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 9px;
+        }
+
+        .curso-completado .mini-img {
+            width: 39px;
+            height: 38px;
+        }
+
+        .datos {
+            flex: 1;
+        }
+
+        .datos .titulo {
+            height: 3px;
+            background: #111;
+            width: 100%;
+            margin-bottom: 7px;
+        }
+
+        .datos p {
+            font-size: 5px;
+            margin-bottom: 5px;
+        }
+
+        .datos .barra {
+            width: 100%;
+            height: 2px;
+            background: #aaa;
+        }
+
+        /* -------------------------
+           DATOS EDUCATIVOS
+        ------------------------- */
+
+        .educacion {
+            border-top: 1px solid #999;
+            margin-top: 8px;
+            padding-top: 7px;
+        }
+
+        .educacion h4 {
+            font-size: 9px;
+            margin-bottom: 5px;
+        }
+
+        .educacion-box {
+            border: 1px solid #555;
+            height: 43px;
+            padding: 4px;
+            position: relative;
+        }
+
+        .educacion-box p {
+            font-size: 5px;
+            margin-bottom: 4px;
+        }
+
+        /* -------------------------
+           DESCARGAS
+        ------------------------- */
+
+        .titulo-pagina {
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        .subtitulo {
+            font-size: 8px;
+            margin-bottom: 10px;
+        }
+
+        .download-img {
+            width: 100%;
+            height: 64px;
+            margin-bottom: 10px;
+        }
+
+        .separador {
+            border-top: 1px solid #999;
+            margin: 4px 0 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <!-- =========================
+         PANTALLA 1 - PERFIL
+    ========================== -->
+
+    <div class="telefono">
+
+        <div class="contenido">
+
+            <div class="cerrar">×</div>
+
+            <div class="perfil">
+
+                <div class="avatar"></div>
+
+                <h4>Logged in as</h4>
+
+                <div class="linea"></div>
+                <div class="linea-corta"></div>
+
+                <div class="opciones">
+
+                    <div class="opcion">
+                        Settings
+                    </div>
+
+                    <div class="opcion">
+                        External resources
+                    </div>
+
+                    <div class="opcion">
+                        Subscription status
+                    </div>
+
+                    <div class="opcion">
+                        Contact us
+                    </div>
+
+                    <div class="opcion logout">
+                        Log out →
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PANTALLA 2 - HOME
+    ========================== -->
+
+    <div class="telefono">
+
+        <div class="contenido">
+
+            <div class="top">
+                <div class="menu">≡</div>
+                <div class="campana">♟</div>
+            </div>
+
+            <div class="search">
+                Search...
+            </div>
+
+            <div class="imagen banner"></div>
+
+            <div class="puntos">•••••</div>
+
+            <h3>Quick links</h3>
+
+            <div class="quick-links">
+
+                <div>
+                    <div class="imagen quick"></div>
+                    <div class="quick-line"></div>
+                </div>
+
+                <div>
+                    <div class="imagen quick"></div>
+                    <div class="quick-line"></div>
+                </div>
+
+                <div>
+                    <div class="imagen quick"></div>
+                    <div class="quick-line"></div>
+                </div>
+
+                <div>
+                    <div class="imagen quick"></div>
+                    <div class="quick-line"></div>
+                </div>
+
+            </div>
+
+            <h3>Our most popular courses</h3>
+
+            <div class="curso">
+                <div style="flex:1">
+                    <div class="curso-line" style="width:55%"></div>
+                    <div class="texto-line"></div>
+                    <div class="texto-line"></div>
+                    <div class="texto-line"></div>
+                </div>
+                <div class="imagen mini-img"></div>
+            </div>
+
+            <div class="curso">
+                <div style="flex:1">
+                    <div class="curso-line" style="width:55%"></div>
+                    <div class="texto-line"></div>
+                    <div class="texto-line"></div>
+                    <div class="texto-line"></div>
+                </div>
+                <div class="imagen mini-img"></div>
+            </div>
+
+            <div class="curso">
+                <div style="flex:1">
+                    <div class="curso-line" style="width:55%"></div>
+                    <div class="texto-line"></div>
+                    <div class="texto-line"></div>
+                </div>
+                <div class="imagen mini-img"></div>
+            </div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <span>⌂</span>
+            <span>▱</span>
+            <span>⇩</span>
+            <span>●</span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PANTALLA 3 - PERFIL CURSOS
+    ========================== -->
+
+    <div class="telefono">
+
+        <div class="contenido">
+
+            <div class="perfil-header">
+
+                <div class="perfil-info">
+
+                    <h2>Profile</h2>
+
+                    <div class="black"></div>
+                    <div class="gray"></div>
+                    <div class="gray" style="width:35px"></div>
+
+                </div>
+
+                <div class="avatar"></div>
+
+            </div>
+
+            <div class="seccion">
+                Completed Courses
+            </div>
+
+            <div class="curso-completado">
+
+                <div class="imagen mini-img"></div>
+
+                <div class="datos">
+                    <div class="titulo"></div>
+                    <p>Completed on:</p>
+                    <div class="barra"></div>
+                    <p>Percentage:</p>
+                </div>
+
+            </div>
+
+            <div class="curso-completado">
+
+                <div class="imagen mini-img"></div>
+
+                <div class="datos">
+                    <div class="titulo"></div>
+                    <p>Completed on:</p>
+                    <div class="barra"></div>
+                    <p>Percentage:</p>
+                </div>
+
+            </div>
+
+            <div class="curso-completado">
+
+                <div class="imagen mini-img"></div>
+
+                <div class="datos">
+                    <div class="titulo"></div>
+                    <p>Completed on:</p>
+                    <div class="barra"></div>
+                    <p>Percentage:</p>
+                </div>
+
+            </div>
+
+            <div class="educacion">
+
+                <h4>Educational Details</h4>
+
+                <div class="educacion-box">
+
+                    <p>College:</p>
+                    <p>Course:</p>
+                    <p>CGPA:</p>
+                    <p>Start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End date:</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <span>⌂</span>
+            <span>▱</span>
+            <span>⇩</span>
+            <span>●</span>
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PANTALLA 4 - DOWNLOADS
+    ========================== -->
+
+    <div class="telefono">
+
+        <div class="contenido">
+
+            <div class="top">
+                <div class="menu">≡</div>
+            </div>
+
+            <h2 class="titulo-pagina">
+                Downloads
+            </h2>
+
+            <div class="subtitulo">
+                Upcoming Lectures (2)
+            </div>
+
+            <div class="imagen download-img"></div>
+
+            <div class="imagen download-img"></div>
+
+            <div class="separador"></div>
+
+            <div class="subtitulo">
+                Completed &nbsp;&nbsp; (1)
+            </div>
+
+            <div class="imagen download-img"></div>
+
+        </div>
+
+        <div class="bottom-nav">
+            <span>⌂</span>
+            <span>▱</span>
+            <span>⇩</span>
+            <span>●</span>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
